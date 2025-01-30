@@ -1,23 +1,23 @@
 [gd_scene load_steps=13 format=3 uid="uid://j1b7aw8a8ki1"]
 
-[ext_resource type="Script" path="res://rock.gd" id="1_mu3vm"]
-[ext_resource type="Texture2D" uid="uid://dj1tj3tsxjt3e" path="res://rock3.png" id="2_wxtq6"]
-[ext_resource type="Texture2D" uid="uid://cq1tdlxd26iyf" path="res://rock2.png" id="3_oy3a0"]
-[ext_resource type="Texture2D" uid="uid://cumobso1ga16p" path="res://rock1.png" id="4_d51ea"]
+[ext_resource type="Script" path="res://SCRIPTS/rock.gd" id="1_rfjia"]
+[ext_resource type="Texture2D" uid="uid://dj1tj3tsxjt3e" path="res://SPRITES/rock3.png" id="2_0dcil"]
+[ext_resource type="Texture2D" uid="uid://cq1tdlxd26iyf" path="res://SPRITES/rock2.png" id="3_vn45e"]
+[ext_resource type="Texture2D" uid="uid://cumobso1ga16p" path="res://SPRITES/rock1.png" id="4_weth5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3i4rp"]
 radius = 64.0312
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ablvo"]
-atlas = ExtResource("2_wxtq6")
+atlas = ExtResource("2_0dcil")
 region = Rect2(0, 0, 250, 250)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ep04t"]
-atlas = ExtResource("3_oy3a0")
+atlas = ExtResource("3_vn45e")
 region = Rect2(0, 0, 250, 250)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qagaw"]
-atlas = ExtResource("4_d51ea")
+atlas = ExtResource("4_weth5")
 region = Rect2(0, 0, 250, 250)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2s6aq"]
@@ -60,7 +60,7 @@ scale_curve = SubResource("CurveTexture_tj5hc")
 
 [node name="Rock" type="CharacterBody2D" groups=["rock"]]
 motion_mode = 1
-script = ExtResource("1_mu3vm")
+script = ExtResource("1_rfjia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3i4rp")

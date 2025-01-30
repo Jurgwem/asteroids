@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var rockRes = preload("res://rock.tscn");
-var bulletRes = preload("res://bullet.tscn");
+var rockRes = preload("res://INSTANCES/rock.tscn");
+var bulletRes = preload("res://INSTANCES/bullet.tscn");
 
 const SPEED = 300.0
 var rotVel = 0;
@@ -111,6 +111,7 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		dead = true;
 		$"../Control/dead".visible = true;
 		$Sprite2D.visible = false;
+		$GPUParticles2D.emitting = false;
 		await get_tree().create_timer(3).timeout;
 		queue_free();
 	pass # Replace with function body.

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cvpbdw2l03dtl"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_kepln"]
-[ext_resource type="Texture2D" uid="uid://ckq617y24yji8" path="res://player.png" id="2_ubjlb"]
+[ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_b8sng"]
+[ext_resource type="Texture2D" uid="uid://ckq617y24yji8" path="res://SPRITES/player.png" id="2_ubjlb"]
 
 [sub_resource type="Curve" id="Curve_ref8u"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -36,7 +36,7 @@ font_size = 32
 [node name="player" type="CharacterBody2D" parent="."]
 scale = Vector2(0.5, 0.5)
 motion_mode = 1
-script = ExtResource("1_kepln")
+script = ExtResource("1_b8sng")
 
 [node name="Sprite2D" type="Sprite2D" parent="player"]
 rotation = 1.5708

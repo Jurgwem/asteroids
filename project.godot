@@ -14,8 +14,8 @@ config/name="asteroids"
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="res://splash.png"
-config/icon="res://rock3.png"
+boot_splash/image="res://SPRITES/splash.png"
+config/icon="res://SPRITES/rock3.png"
 
 [display]
 

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var rockRes = preload("res://rock.tscn");
+var rockRes = preload("res://INSTANCES/rock.tscn");
 @onready var game = get_node("/root/game");
 @onready var player = get_node("/root/game/player");
 
@@ -27,7 +27,6 @@ func _ready() -> void:
 		type = 1;
 	pass
 	
-	print(type)
 	chance = randf()
 	rot = 1 + (randf() / 2);
 	if chance > 0.5:
