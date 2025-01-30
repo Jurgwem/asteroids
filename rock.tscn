@@ -1,0 +1,80 @@
+[gd_scene load_steps=13 format=3 uid="uid://j1b7aw8a8ki1"]
+
+[ext_resource type="Script" path="res://rock.gd" id="1_mu3vm"]
+[ext_resource type="Texture2D" uid="uid://dj1tj3tsxjt3e" path="res://rock3.png" id="2_wxtq6"]
+[ext_resource type="Texture2D" uid="uid://cq1tdlxd26iyf" path="res://rock2.png" id="3_oy3a0"]
+[ext_resource type="Texture2D" uid="uid://cumobso1ga16p" path="res://rock1.png" id="4_d51ea"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3i4rp"]
+radius = 64.0312
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ablvo"]
+atlas = ExtResource("2_wxtq6")
+region = Rect2(0, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep04t"]
+atlas = ExtResource("3_oy3a0")
+region = Rect2(0, 0, 250, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qagaw"]
+atlas = ExtResource("4_d51ea")
+region = Rect2(0, 0, 250, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2s6aq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ablvo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep04t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qagaw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="Curve" id="Curve_3sb1j"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tj5hc"]
+curve = SubResource("Curve_3sb1j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k2803"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 96.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 8.0
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_tj5hc")
+
+[node name="Rock" type="CharacterBody2D" groups=["rock"]]
+motion_mode = 1
+script = ExtResource("1_mu3vm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3i4rp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.55, 0.55)
+sprite_frames = SubResource("SpriteFrames_2s6aq")
+frame = 2
+frame_progress = 0.451009
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_k2803")
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.5

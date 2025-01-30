@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvpbdw2l03dtl"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_kepln"]
+[ext_resource type="Texture2D" uid="uid://ckq617y24yji8" path="res://player.png" id="2_ubjlb"]
+
+[sub_resource type="Curve" id="Curve_ref8u"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.253333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_bappt"]
+curve = SubResource("Curve_ref8u")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k21n2"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-64.81, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(1, 50, 1)
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(-1, 0, 0)
+spread = 10.0
+initial_velocity_min = 120.0
+initial_velocity_max = 240.0
+angular_velocity_min = -360.0
+angular_velocity_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_min = 6.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_bappt")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8htm6"]
+font_size = 32
+
+[node name="game" type="Node2D"]
+
+[node name="player" type="CharacterBody2D" parent="."]
+scale = Vector2(0.5, 0.5)
+motion_mode = 1
+script = ExtResource("1_kepln")
+
+[node name="Sprite2D" type="Sprite2D" parent="player"]
+rotation = 1.5708
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ubjlb")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player"]
+rotation = 1.5708
+polygon = PackedVector2Array(-62, 56, 0, -62, 62, 58)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="player"]
+emitting = false
+amount = 128
+process_material = SubResource("ParticleProcessMaterial_k21n2")
+lifetime = 2.0
+
+[node name="Area2D" type="Area2D" parent="player"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player/Area2D"]
+polygon = PackedVector2Array(-64, -80, 82, 0, -66, 78)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -400.0
+offset_top = -400.0
+offset_right = 400.0
+offset_bottom = 400.0
+
+[node name="dead" type="Label" parent="Control"]
+visible = false
+layout_mode = 0
+offset_left = 300.0
+offset_top = 41.0
+offset_right = 503.0
+offset_bottom = 86.0
+text = "You are dead"
+label_settings = SubResource("LabelSettings_8htm6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="score" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 2.0
+offset_right = 450.0
+offset_bottom = 47.0
+text = "XXXXX"
+label_settings = SubResource("LabelSettings_8htm6")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="player/Area2D" to="player" method="_on_area_2d_body_entered"]
