@@ -10,7 +10,10 @@ config_version=5
 
 [application]
 
-config/name="asteroids"
+config/name="Asteroids"
+config/description="simple \"Asteroids\" clone made in Godot in roughly 2 hours to have fun.
+made by @Jurgwem"
+config/version="1.1"
 run/main_scene="res://game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
