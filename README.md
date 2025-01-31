@@ -5,4 +5,5 @@
 - w = forwards
 - a = left
 - d = right
+- esc = restart
 - space = shoot

@@ -20,6 +20,7 @@ var spawnDelay = 10.0;
 var difficultyTimer = 0.0;
 
 func _ready() -> void:
+	$"../Control/score".text = str(score);
 	rotation = deg_to_rad(randf() * 360);
 	velocity = Vector2(1, 0).rotated(rotation) * randf() * 100;
 	rotation = 0;
@@ -33,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	timerScore += delta;
 	difficultyTimer += delta;
 	
-	if difficultyTimer >= 10:
+	if difficultyTimer >= 15:
 		difficultyTimer = 0;
 		spawnDelay *= 0.8;
 	
@@ -100,6 +101,9 @@ func _physics_process(delta: float) -> void:
 			bullet.position = position;
 			bullet.rotation = rotation;
 			$"..".add_child(bullet);
+			
+	if Input.is_action_just_pressed("restart"):
+		get_tree().change_scene_to_file("res://game.tscn")
 	
 	
 	rotation += deg_to_rad(rotVel);
