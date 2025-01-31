@@ -104,6 +104,7 @@ func _physics_process(delta: float) -> void:
 			
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://game.tscn")
+		return;
 	
 	
 	rotation += deg_to_rad(rotVel);
