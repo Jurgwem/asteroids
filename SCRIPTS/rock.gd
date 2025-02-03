@@ -19,10 +19,12 @@ func _ready() -> void:
 		type = 3;
 	elif chance > 0.33:
 		scale = Vector2(0.75, 0.75)
+		$CollisionShape2D.scale = Vector2(0.9, 0.9);
 		$AnimatedSprite2D.frame = 1;
 		type = 2;
 	else:
 		scale = Vector2(0.5, 0.5)
+		$CollisionShape2D.scale = Vector2(0.83, 0.83);
 		$AnimatedSprite2D.frame = 2;
 		type = 1;
 	pass

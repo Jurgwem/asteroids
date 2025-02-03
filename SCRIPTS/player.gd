@@ -101,23 +101,26 @@ func _physics_process(delta: float) -> void:
 			bullet.position = position;
 			bullet.rotation = rotation;
 			$"..".add_child(bullet);
+		
+		rotation += deg_to_rad(rotVel);
 			
 	if Input.is_action_just_pressed("restart"):
 		get_tree().change_scene_to_file("res://game.tscn")
 		return;
 	
 	
-	rotation += deg_to_rad(rotVel);
 	move_and_slide()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.is_in_group("rock"):
+		$death.emitting = true;
+		velocity *= 0;
 		dead = true;
 		$"../Control/dead".visible = true;
 		$Sprite2D.visible = false;
 		$GPUParticles2D.emitting = false;
-		await get_tree().create_timer(3).timeout;
+		await get_tree().create_timer(1.2).timeout;
 		$CollisionPolygon2D.disabled = true;
 		#queue_free();
 	pass # Replace with function body.

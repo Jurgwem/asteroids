@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvpbdw2l03dtl"]
+[gd_scene load_steps=10 format=3 uid="uid://cvpbdw2l03dtl"]
 
 [ext_resource type="Script" path="res://SCRIPTS/player.gd" id="1_b8sng"]
 [ext_resource type="Texture2D" uid="uid://ckq617y24yji8" path="res://SPRITES/player.png" id="2_ubjlb"]
@@ -27,6 +27,27 @@ gravity = Vector3(0, 0, 0)
 scale_min = 6.0
 scale_max = 8.0
 scale_curve = SubResource("CurveTexture_bappt")
+
+[sub_resource type="Curve" id="Curve_cdd2x"]
+_data = [Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tj5hc"]
+curve = SubResource("Curve_cdd2x")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_04cdw"]
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+spread = 180.0
+initial_velocity_min = 96.0
+initial_velocity_max = 128.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+scale_min = 8.0
+scale_max = 16.0
+scale_curve = SubResource("CurveTexture_tj5hc")
 
 [sub_resource type="LabelSettings" id="LabelSettings_8htm6"]
 font_size = 32
@@ -57,6 +78,14 @@ lifetime = 2.0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player/Area2D"]
 polygon = PackedVector2Array(-64, -80, 82, 0, -66, 78)
+
+[node name="death" type="GPUParticles2D" parent="player"]
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_04cdw")
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.5
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
