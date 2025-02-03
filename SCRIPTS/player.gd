@@ -118,5 +118,6 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		$Sprite2D.visible = false;
 		$GPUParticles2D.emitting = false;
 		await get_tree().create_timer(3).timeout;
-		queue_free();
+		$CollisionPolygon2D.disabled = true;
+		#queue_free();
 	pass # Replace with function body.
